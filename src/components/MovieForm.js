@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 class MovieForm extends React.Component {
   constructor(props) {
@@ -89,17 +88,21 @@ class MovieForm extends React.Component {
 
     return (
       <div>
-        <label htmlFor="movie_genre">Genre Select</label>
-        <select
-          id="movie_genre"
-          value={genre}
-          onChange={(event) => this.updateMovie('genre', event.target.value)}
-        >
-          <option value="action">Ação</option>
-          <option value="comedy">Comédia</option>
-          <option value="thriller">Suspense</option>
-          <option value="fantasy">Fantasia</option>
-        </select>
+
+        <div className="input-field col s12">
+          <select
+            className="browser-default"
+            id="movie_genre"
+            value={genre}
+            onChange={(event) => this.updateMovie('genre', event.target.value)}
+          >
+            <option value="action">Ação</option>
+            <option value="comedy">Comédia</option>
+            <option value="thriller">Suspense</option>
+            <option value="fantasy">Fantasia</option>
+          </select>
+        </div>
+        <label htmlFor="movie_genre">Gênero</label>
       </div>
     );
   }
@@ -130,6 +133,7 @@ class MovieForm extends React.Component {
         <button
           type="button"
           onClick={this.handleSubmit}
+          className="waves-effect grey darken-3 btn"
         >
           Submit
         </button>
@@ -139,7 +143,7 @@ class MovieForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container center-align white">
         <form>
           {this.renderTitleInput()}
           {this.renderSubtitleInput()}
@@ -155,3 +159,15 @@ class MovieForm extends React.Component {
 }
 
 export default MovieForm;
+
+MovieForm.defaultProps = {
+  movie: {
+    title: '',
+    subtitle: '',
+    storyline: '',
+    rating: 0,
+    imagePath: '',
+    bookmarked: false,
+    genre: '',
+  },
+};
